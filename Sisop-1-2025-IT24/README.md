@@ -20,11 +20,13 @@ awk -F, '{
     END {print "Chris Hemsworth membaca", count, "buku.";}' reading_data.csv
 ```
 Mencari "Chris Hemsworth" di column 2 kemudian menghitung berapa kali nama tersebut muncul untuk mengetahui berapa buku yang telah dibaca.
+- ```if ($2 == "Chris Hemsworth") { count++}``` jika pada column 2 terdapat "Chris Hemsworth" maka akan "count" ditambahkan 1
+- ```count=count``` selain Chris Hemsworth count akan tetap sama
+
 Setelah berhasil dijalankan kemudian code tersebut dimasukkan ke poppo_siroyo.sh
 ```
 nano poppo_siroyo.sh
 ```
-
 ### b.
 Menghitung rata-rata pembaca buku yang menggunakan media tablet
 Diketahui Device terdapat pada column H/8 dan Reading Duration pada column F/6

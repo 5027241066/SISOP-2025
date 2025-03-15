@@ -23,10 +23,6 @@ Mencari "Chris Hemsworth" di column 2 kemudian menghitung berapa kali nama terse
 - ```if ($2 == "Chris Hemsworth") { count++}``` jika pada column 2 terdapat "Chris Hemsworth" maka akan "count" ditambahkan 1
 - ```count=count``` selain Chris Hemsworth count akan tetap sama
 
-Setelah berhasil dijalankan kemudian code tersebut dimasukkan ke poppo_siroyo.sh
-```
-nano poppo_siroyo.sh
-```
 ### b.
 Menghitung rata-rata pembaca buku yang menggunakan media tablet
 Diketahui Device terdapat pada column H/8 dan Reading Duration pada column F/6
@@ -67,6 +63,11 @@ print "Genre paling populer di Asia setelah 2023 adalah", popular_genre, "dengan
 - ```(genre[g] > max_count)``` memeriksa jumlah genre apakah lebih besar dari max_count
 - ```{max_count = genre[g]``` jika ditemukan genre saat ini lebih banyak dari genre sebelumnya maka akan disimpan ke popular genre
 - ```popular_genre = g``` memperbarui hasil sebelumnya kedalam popular genre
+
+Setelah semua code berhasil dijalankan kemudian code tersebut dimasukkan ke poppo_siroyo.sh
+```
+nano poppo_siroyo.sh
+```
 
 # Soal 2
 

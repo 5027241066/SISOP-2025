@@ -25,20 +25,15 @@ show_help() {
 # Summary (A)
 show_summary() {
     input_file=$1
-
-    # Cek apakah file ada
     if [[ ! -f "$input_file" ]]; then
         echo "Error: File '$input_file' not found!"
         exit 1
     fi
-
-    # Menentukan Pokémon dengan Usage% tertinggi
+    # Usage% tertinggi
     highest_usage=$(sed 1d "$input_file" | awk -F',' 'BEGIN {max=0} {if ($2+0 > max) {max=$2+0; name=$1}} END {print name, max"%"}')
 
-    # Menentukan Pokémon dengan Raw Usage tertinggi
+    # Raw Usage tertinggi
     highest_raw=$(sed 1d "$input_file" | awk -F',' 'BEGIN {max=0} {if ($3+0 > max) {max=$3+0; name=$1}} END {print name, max" uses"}')
-
-    # Output
     echo "📊 Summary of $input_file"
     echo "🔥 Highest Adjusted Usage: $highest_usage"
     echo "⚔  Highest Raw Usage: $highest_raw"
@@ -101,20 +96,18 @@ filter_by_type() {
     awk -F, -v type="$filter_type" 'NR>1 && ($4 == type || $5 == type)' "$input_file" | sort -t, -k2,2nr
 }
 
-# Main script
+# Script utama
 if [[ $# -eq 0 ]]; then
     echo "Usage: $0 <pokemon_usage.csv> <option> [arguments]"
     echo "Use -h or --help for more information."
     exit 1
 fi
 
-# Cek opsi -h atau --help
 if [[ "$1" == "-h" || "$1" == "--help" ]]; then
     show_help
     exit 0
 fi
 
-# Cek jumlah argumen
 if [[ $# -lt 2 ]]; then
     echo "Error: Insufficient arguments"
     show_help
@@ -124,7 +117,6 @@ fi
 input_file=$1
 option=$2
 
-# Cek apakah file ada
 if [[ ! -f "$input_file" ]]; then
     echo "Error: File '$input_file' not found!"
     exit 1

@@ -29,9 +29,42 @@ nano poppo_siroyo.sh
 Menghitung rata-rata pembaca buku yang menggunakan media tablet
 Diketahui Device terdapat pada column H/8 dan Reading Duration pada column F/6
 ```
-awk -F, '{if ($8 == "Tablet") total += $6; count++} END {print "Rata-rata durasi membaca dengan Tablet adalah", total/count, "menit."}' reading_data.csv
+awk -F, '{if ($8 == "Tablet") {total += $6; count++}} END {print "Rata-rata durasi membaca dengan Tablet adalah", total/count, "menit."}' reading_data.csv
 ```
+- ```$8 -- "Tablet" total += $6``` untuk mencari pada column 8 yang membaca menggunakan tablet kemudian melihat pada column 6 dan memasukkan angka ke dalam variabel "total"
+- ```count++``` menambah tiap pengulangan pengguna tablet ke dalam variabel "total"
+- ```total/count``` untuk menghitung rata-rata dari variabel "total" dibagi dengan jumlah count yang terjadi
 
+### c.
+Mencari orang yang memberi rating paling tinggi pada buku yang dibacanya.
+Diketahui rating diberikan pada column G/7.
+```
+awk -F, '{if ($7 > max && $7 >= 0 && $7 <= 10) {max = $7; name = $2; book = $3}} END {print "Pembaca dengan rating tertinggi:", name, "-", book, "-", max}' reading_data.csv
+```
+- ```$7 > max && $7 >= 0 && $7 <= 10``` memeriksa apakah pada column 7 yang sebelumnya disimpan memiliki nilai lebih besar dari yang sebelumnya telah disimpan kemudian memberi limit untuk mencari angka pada column 7 yaitu minimal 0 dan maksimal 10
+- ```max = $7; name = $2; book = $3``` untuk menyinpan apabila telah ditemukan rating paling tinggi pada column 7
+
+### d
+Mencari buku yang paling popolar di Asia dan setelah tahun 2023
+```
+awk -F, '$9 ~ /Asia/ && $5 > "2023-12-31" {genre[$4]++} 
+END {
+ max_count = 0;
+ for (g in genre) {
+ if (genre[g] > max_count) {
+    max_count = genre[g];
+    popular_genre = g;
+    }
+}
+print "Genre paling populer di Asia setelah 2023 adalah", popular_genre, "dengan", max_count, "buku.";}' reading_data.csv
+```
+- ```$9 ~ /Asia/``` memberi batasan yang dicari pada column 9 hanya "Asia"
+- ```$5 > "2023-12-31"``` mencari tanggal baca setelah 31 Desember 2023
+- ```{genre[$4]++}``` menambah jumlah genre setelah 2 syarat sebelumnya memenuhi
+- ```max_count = 0``` set max_count awal adalah 0 untuk ditambah kemudian
+- ```(genre[g] > max_count)``` memeriksa jumlah genre apakah lebih besar dari max_count
+- ```{max_count = genre[g]``` jika ditemukan genre saat ini lebih banyak dari genre sebelumnya maka akan disimpan ke popular genre
+- ```popular_genre = g``` memperbarui hasil sebelumnya kedalam popular genre
 
 # Soal 2
 

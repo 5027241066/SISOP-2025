@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Fungsi untuk menampilkan help screen (F)
+# Help screen (F)
 show_help() {
     echo "=================================================="
     echo "                     POKEMON"
@@ -22,7 +22,7 @@ show_help() {
     echo "=================================================="
 }
 
-# Fungsi untuk menampilkan summary (A)
+# Summary (A)
 show_summary() {
     input_file=$1
 
@@ -44,7 +44,7 @@ show_summary() {
     echo "⚔  Highest Raw Usage: $highest_raw"
 }
 
-# Fungsi untuk mengurutkan Pokemon (B)
+# Mengurutkan Pokemon (B)
 sort_pokemon() {
     input_file=$1
     sort_by=$2
@@ -85,7 +85,7 @@ sort_pokemon() {
     esac
 }
 
-# Fungsi untuk mencari Pokemon berdasarkan nama (C)
+# Mencari berdasarkan nama (C)
 search_pokemon() {
     input_file=$1
     search_term=$2
@@ -93,7 +93,7 @@ search_pokemon() {
     grep -i "$search_term" "$input_file" | sort -t, -k2,2nr
 }
 
-# Fungsi untuk memfilter Pokemon berdasarkan type (D)
+# filter berdasarkan type (D)
 filter_by_type() {
     input_file=$1
     filter_type=$2

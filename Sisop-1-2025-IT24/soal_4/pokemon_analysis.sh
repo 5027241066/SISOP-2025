@@ -29,7 +29,7 @@ show_summary() {
         echo "Error: File '$input_file' not found!"
         exit 1
     fi
-    # Usage% tertinggi
+    # Usage tertinggi
     highest_usage=$(sed 1d "$input_file" | awk -F',' 'BEGIN {max=0} {if ($2+0 > max) {max=$2+0; name=$1}} END {print name, max"%"}')
 
     # Raw Usage tertinggi

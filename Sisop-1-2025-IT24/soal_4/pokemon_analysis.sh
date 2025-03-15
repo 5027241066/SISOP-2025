@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Help screen (F)
+# F
 show_help() {
     echo "=================================================="
     echo "                     POKEMON"
@@ -22,7 +22,7 @@ show_help() {
     echo "=================================================="
 }
 
-# Summary (A)
+# A
 show_summary() {
     input_file=$1
     if [[ ! -f "$input_file" ]]; then
@@ -39,7 +39,7 @@ show_summary() {
     echo "⚔  Highest Raw Usage: $highest_raw"
 }
 
-# Mengurutkan Pokemon (B)
+# B
 sort_pokemon() {
     input_file=$1
     sort_by=$2
@@ -80,7 +80,7 @@ sort_pokemon() {
     esac
 }
 
-# Mencari berdasarkan nama (C)
+# C
 search_pokemon() {
     input_file=$1
     search_term=$2
@@ -88,7 +88,7 @@ search_pokemon() {
     grep -i "$search_term" "$input_file" | sort -t, -k2,2nr
 }
 
-# filter berdasarkan type (D)
+# D
 filter_by_type() {
     input_file=$1
     filter_type=$2
@@ -96,7 +96,6 @@ filter_by_type() {
     awk -F, -v type="$filter_type" 'NR>1 && ($4 == type || $5 == type)' "$input_file" | sort -t, -k2,2nr
 }
 
-# Script utama
 if [[ $# -eq 0 ]]; then
     echo "Usage: $0 <pokemon_usage.csv> <option> [arguments]"
     echo "Use -h or --help for more information."

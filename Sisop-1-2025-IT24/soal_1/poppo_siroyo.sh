@@ -1,5 +1,3 @@
-wget "https://drive.usercontent.google.com/u/0/uc?id=1l8fsj5LZLwXBlHaqhfJVjz_T0p7EJjqV&export=download" -O reading_data.csv
-
 #a
 awk -F, '{
         if ($2 == "Chris Hemsworth") {
